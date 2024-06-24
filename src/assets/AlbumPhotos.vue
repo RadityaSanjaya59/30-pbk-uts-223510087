@@ -67,6 +67,7 @@ export default {
   border-radius: 4px;
   cursor: pointer;
   margin-top: 10px;
+  margin-left: 10px;
 }
 
 .back-button:hover {
