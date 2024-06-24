@@ -3,39 +3,19 @@
     <header class="header">
       <nav>
         <ul class="menu">
-          <li><a href="#" @click.prevent="currentPage = 'todos'">Todos</a></li>
-          <li><a href="#" @click.prevent="currentPage = 'posts'">Posts</a></li>
+          <li><router-link to="/todos">Todos</router-link></li>
+          <li><router-link to="/posts">Posts</router-link></li>
+          <li><router-link to="/albums">Albums</router-link></li>
         </ul>
       </nav>
     </header>
-    <div v-show="currentPage === 'todos'">
-      <Todos />
-    </div>
-    <div v-show="currentPage === 'posts'">
-      <Posts>
-        <template #default="{ post }">
-          <h3>{{ post.title }}</h3>
-          <p>{{ post.body }}</p>
-        </template>
-      </Posts>
-    </div>
+    <router-view />
   </div>
 </template>
 
 <script>
-import Todos from './assets/Todos.vue';
-import Posts from './assets/Posts.vue';
-
 export default {
-  components: {
-    Todos,
-    Posts,
-  },
-  data() {
-    return {
-      currentPage: 'todos',
-    };
-  },
+  name: 'App'
 };
 </script>
 
@@ -52,7 +32,6 @@ export default {
   justify-content: center;
   padding: 0;
   margin: 0;
-  
 }
 
 .menu li {
@@ -60,7 +39,6 @@ export default {
   background-color: white;
   padding: 5px 5px 5px 5px;
   border-radius: 5px;
-  
 }
 
 .menu a {

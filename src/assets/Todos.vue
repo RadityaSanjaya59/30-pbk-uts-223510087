@@ -45,7 +45,7 @@ export default {
   computed: {
     filteredActivities() {
       return this.showOnlyIncomplete
-        ? this.activities.filter((activity) => !activity.completed)
+        ? this.activities.filter(activity => !activity.completed)
         : this.activities;
     },
   },
@@ -70,18 +70,29 @@ export default {
 </script>
 
 <style scoped>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 80vh;
-  font-family: Arial, sans-serif;
+  height: 100vh;
+  width: 100vw;
   background-image: url('https://img.freepik.com/free-vector/wrinkled-paper-texture_1100-12.jpg?t=st=1714240462~exp=1714244062~hmac=151af54a2977d4cc1f47ca8217b5e448cc256dd00aaa69fb6d7b09f7ba78c524&w=740');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  width: 800px;
+  padding: 20px;
 }
 
 .title {
@@ -93,6 +104,8 @@ export default {
 .input-container {
   display: flex;
   margin-bottom: 20px;
+  width: 100%;
+  max-width: 500px;
 }
 
 .input-container input {
@@ -109,11 +122,14 @@ export default {
   background-color: #5F6F52;
   color: white;
   cursor: pointer;
+  margin-left: 10px;
 }
 
 .activities-list {
   list-style: none;
   padding: 0;
+  width: 100%;
+  max-width: 500px;
 }
 
 .activity-item {
@@ -130,7 +146,6 @@ export default {
 
 .buttons {
   display: flex;
-  justify-content: space-between;
 }
 
 .action-button {
