@@ -34,40 +34,33 @@
 </template>
 
 <script>
+import { ref } from 'vue';
+import { useActivitiesStore } from '../store';
+
 export default {
-  data() {
-    return {
-      newActivity: '',
-      activities: [],
-      showOnlyIncomplete: false,
+  setup() {
+    const newActivity = ref('');
+    const activitiesStore = useActivitiesStore();
+
+    const addActivity = () => {
+      activitiesStore.addActivity(newActivity.value);
+      newActivity.value = '';
     };
-  },
-  computed: {
-    filteredActivities() {
-      return this.showOnlyIncomplete
-        ? this.activities.filter(activity => !activity.completed)
-        : this.activities;
-    },
-  },
-  methods: {
-    addActivity() {
-      if (this.newActivity.trim()) {
-        this.activities.push({ name: this.newActivity, completed: false });
-        this.newActivity = '';
-      }
-    },
-    toggleActivity(index) {
-      this.activities[index].completed = !this.activities[index].completed;
-    },
-    removeActivity(index) {
-      this.activities.splice(index, 1);
-    },
-    filterCompleted() {
-      this.showOnlyIncomplete = !this.showOnlyIncomplete;
-    },
+
+    return {
+      newActivity,
+      addActivity,
+      toggleActivity: activitiesStore.toggleActivity,
+      removeActivity: activitiesStore.removeActivity,
+      filterCompleted: activitiesStore.filterCompleted,
+      filteredActivities: activitiesStore.filteredActivities,
+      showOnlyIncomplete: activitiesStore.showOnlyIncomplete,
+    };
   },
 };
 </script>
+
+
 
 <style scoped>
 * {
